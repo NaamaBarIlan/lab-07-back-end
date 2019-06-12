@@ -42,7 +42,9 @@ const weatherArray =[];
 // Helper Functions
 
 function Weather(query, time, forecast) {
-  this.search_query = query;
+	this.search_query = query;
+	
+	// Original time was updated to convert from epoch time to day, date, etc.  
   this.time = new Date(time * 1000).toDateString();
   this.forecast = forecast;
   weatherArray.push(this);
@@ -52,6 +54,7 @@ function Weather(query, time, forecast) {
 function searchWeatherData(query) {
   const skyData = require('./data/darksky.json');
 
+	// Added a for loop to run through the daily data array and pull 8 instances - one for each day. 
   for (let i = 0; i < skyData.daily.data.length; i++){
     new Weather(query, skyData.daily.data[i].time, skyData.daily.data[i].summary);
 
