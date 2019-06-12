@@ -26,8 +26,8 @@ app.get('/location', (request, response) => {
 app.get('/weather', (request, response) => {
   try {
     const weatherData = searchWeatherData(request.query.data);
-    console.log({weatherArray});
-    response.send(weatherArray);
+    console.log({weatherData});
+    response.send(weatherData);
   }
   catch (error) {
     console.error(error);
@@ -37,28 +37,35 @@ app.get('/weather', (request, response) => {
 
 // Global Variables
 
-const weatherArray =[];
+// const dailyWeatherData =[];
 
 // Helper Functions
 
-function Weather(query, time, forecast) {
-	this.search_query = query;
-	
-	// Original time was updated to convert from epoch time to day, date, etc.  
-  this.time = new Date(time * 1000).toDateString();
-  this.forecast = forecast;
-  weatherArray.push(this);
-}
+// function Weather(query, time, forecast) {
+//   this.search_query = query;
+
+//   // Original time was updated to convert from epoch time to day, date, etc.
+//   this.time = new Date(time * 1000).toDateString();
+//   this.forecast = forecast;
+//   weatherArray.push(this);
+// }
 
 
-function searchWeatherData(query) {
+function searchWeatherData() {
   const skyData = require('./data/darksky.json');
+  const skyDataArray = skyData.daily.data;
 
-	// Added a for loop to run through the daily data array and pull 8 instances - one for each day. 
-  for (let i = 0; i < skyData.daily.data.length; i++){
-    new Weather(query, skyData.daily.data[i].time, skyData.daily.data[i].summary);
+  const weatherArray = skyDataArray.map(currentItem => {
+    let changeTime = new Date (currentItem.time * 1000).toDateString();
+    return {time: changeTime, forecast: currentItem.summary};
+    // return {time: grabWeather.time, forecast: grabWeather.summary};
+  });
+  return weatherArray;
 
-  }
+  // Added a for loop to run through the daily data array and pull 8 instances - one for each day.
+  // for (let i = 0; i < skyData.daily.data.length; i++){
+  //   new Weather(query, skyData.daily.data[i].time, skyData.daily.data[i].summary);
+
 }
 
 function Location(query, geoData) {
