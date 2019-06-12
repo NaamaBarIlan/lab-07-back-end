@@ -69,7 +69,7 @@ function searchToLatLong(query) {
   const geoData = require('./data/geo.json')
   const location = new Location(query, geoData);
   return location;
-};
+}
 
 // Make sure the server is listening for requests
 app.listen(PORT, () => console.log(`App is listening on ${PORT}`));
