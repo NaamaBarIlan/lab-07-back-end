@@ -15,6 +15,8 @@ Actual time needed to complete: _____
 **Authors**
 
 * **Trae Bennett** - [GitHub Profile](https://github.com/TraeBenn22)
+* **Paula Cruz** - [GitHub Profile](https://github.com/polangs)
+* **Matthew Heyert** - [GitHub Profile](https://github.com/heyerthb)
 * **Na'ama Bar-Ilan** - [GitHub Profile](https://github.com/NaamaBarIlan)
 
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
