@@ -43,7 +43,7 @@ const weatherArray =[];
 
 function Weather(query, time, forecast) {
   this.search_query = query;
-  this.time = time;
+  this.time = new Date(time * 1000).toDateString();
   this.forecast = forecast;
   weatherArray.push(this);
 }
